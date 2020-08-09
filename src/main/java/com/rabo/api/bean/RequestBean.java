@@ -88,54 +88,6 @@ public class RequestBean implements Serializable{
 		this.endBalance = endBalance;
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((accountNumber == null) ? 0 : accountNumber.hashCode());
-		result = prime * result + ((descrip == null) ? 0 : descrip.hashCode());
-		result = prime * result + ((endBalance == null) ? 0 : endBalance.hashCode());
-		result = prime * result + ((mutation == null) ? 0 : mutation.hashCode());
-		result = prime * result + ((startBalance == null) ? 0 : startBalance.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		RequestBean other = (RequestBean) obj;
-		if (accountNumber == null) {
-			if (other.accountNumber != null)
-				return false;
-		} else if (!accountNumber.equals(other.accountNumber))
-			return false;
-		if (descrip == null) {
-			if (other.descrip != null)
-				return false;
-		} else if (!descrip.equals(other.descrip))
-			return false;
-		if (endBalance == null) {
-			if (other.endBalance != null)
-				return false;
-		} else if (!endBalance.equals(other.endBalance))
-			return false;
-		if (mutation == null) {
-			if (other.mutation != null)
-				return false;
-		} else if (!mutation.equals(other.mutation))
-			return false;
-		if (startBalance == null) {
-			if (other.startBalance != null)
-				return false;
-		} else if (!startBalance.equals(other.startBalance))
-			return false;
-		return true;
-	}
 
 	@Override
 	public String toString() {
