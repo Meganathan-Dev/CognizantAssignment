@@ -9,6 +9,7 @@ Please follow the below guideliness to execute the project :-
 3. If you getting the error , check the build path and change JRE to JDK.
 4. Again building the project using mvn clean install
 5. Finally run as Spring boot.
+6. open the postman and hit the url http://localhost:8080/validateReport
 
 
 Logic behind the working of code:-
