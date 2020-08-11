@@ -67,7 +67,12 @@ c.Integration testing.
 
 Note : Since testing is pretty straight forward ,I hope you could easily understand the coding logics.
  
+ 
+Images for your reference:-
 
+Duplciate Reference:-
+
+![DuplicateReference](https://user-images.githubusercontent.com/54101562/89868974-46299700-dbd1-11ea-8373-e31f45671227.PNG)
 
 
 
