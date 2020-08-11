@@ -5,9 +5,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import java.util.ArrayList;
 import java.util.List;
-
 import org.apache.log4j.Logger;
 import org.junit.jupiter.api.Test;
+import org.mockito.ArgumentMatchers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -15,28 +15,34 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
-
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rabo.api.bean.RequestBean;
 import com.rabo.api.bean.ResponseBean;
 import com.rabo.api.common.StatementError;
-import com.rabo.api.service.CustomerStatementService;
+import com.rabo.api.controller.CustomerStatementController;
+import com.rabo.api.service.impl.CustomerStatementServiceImpl;
 
-/**RaboBankControllerTests.java is used to testing the Spring MVC Controller in a legacy way of testing . 
- *However this module helps to ascertain the @WebMVCTest , @MockBean Concepts. 
- *The mature model of testing is Spring integration testing ,that is implemented in RaboBankCustomerStatementIntegrationTest.java
- *@author Meganathan Prabakaran**/
-@WebMvcTest
+/**
+ * RaboBankControllerTests.java is used to testing the Spring MVC Controller in
+ * a legacy way of testing . However this module helps to ascertain
+ * the @WebMVCTest , @MockBean Concepts. The mature model of testing is Spring
+ * integration testing ,that is implemented in
+ * RaboBankCustomerStatementIntegrationTest.java
+ * 
+ * @author Meganathan Prabakaran
+ **/
+
+@WebMvcTest(CustomerStatementController.class)
 public class RaboBankCustomerStatementServiceTests {
 	private final Logger logger = Logger.getLogger(RaboBankCustomerStatementServiceTests.class);
 	@Autowired
 	private MockMvc mockmvc;
 
 	@MockBean
-	private CustomerStatementService customerStateService;
+	private CustomerStatementServiceImpl customerStateService;
 
 	/** verify the given request is Successful */
-	
+
 	@Test
 	public void verifySuccessfull() throws Exception {
 		logger.info("Start verifySuccessfull ::--->");
@@ -47,8 +53,10 @@ public class RaboBankCustomerStatementServiceTests {
 		requestBeans.add(reqbean1);
 		requestBeans.add(reqbean2);
 		List<StatementError> stateError = new ArrayList<StatementError>();
-		when(customerStateService.validateCustomerStatement(requestBeans))
-				.thenReturn(new ResponseBean("Successful", stateError));
+
+		ResponseBean responseBean = new ResponseBean("Successful", stateError);
+		when(customerStateService.validateCustomerStatement(ArgumentMatchers.<RequestBean>anyList()))
+				.thenReturn(responseBean);
 
 		mockmvc.perform(MockMvcRequestBuilders.post("/validateReport").content(asJsonString(requestBeans))
 				.contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk())
@@ -72,7 +80,7 @@ public class RaboBankCustomerStatementServiceTests {
 		StatementError statementError = new StatementError(1132111, "NQ980THGBPZPM4330H");
 		stateError.add(statementError);
 
-		when(customerStateService.validateCustomerStatement(requestBeans))
+		when(customerStateService.validateCustomerStatement(ArgumentMatchers.<RequestBean>anyList()))
 				.thenReturn(new ResponseBean("Duplicate_reference", stateError));
 
 		mockmvc.perform(MockMvcRequestBuilders.post("/validateReport").content(asJsonString(requestBeans))
@@ -96,7 +104,7 @@ public class RaboBankCustomerStatementServiceTests {
 		StatementError statementError = new StatementError(1132112, "NQ980THGBPZPM4330H");
 		stateError.add(statementError);
 
-		when(customerStateService.validateCustomerStatement(requestBeans))
+		when(customerStateService.validateCustomerStatement(ArgumentMatchers.<RequestBean>anyList()))
 				.thenReturn(new ResponseBean("Incorrect_End_Balance", stateError));
 
 		mockmvc.perform(MockMvcRequestBuilders.post("/validateReport").content(asJsonString(requestBeans))
@@ -118,7 +126,7 @@ public class RaboBankCustomerStatementServiceTests {
 		List<StatementError> stateError = new ArrayList<StatementError>();
 		StatementError statementError = new StatementError(1132111, "NQ980THGBPZPM4330H");
 		stateError.add(statementError);
-		when(customerStateService.validateCustomerStatement(requestBeans))
+		when(customerStateService.validateCustomerStatement(ArgumentMatchers.<RequestBean>anyList()))
 				.thenReturn(new ResponseBean("Duplicate_Reference_Incorrect_End_Balance", stateError));
 
 		mockmvc.perform(MockMvcRequestBuilders.post("/validateReport").content(asJsonString(requestBeans))
@@ -128,7 +136,8 @@ public class RaboBankCustomerStatementServiceTests {
 				.andExpect(MockMvcResultMatchers.jsonPath("$.errorRecords[0].reference").value(1132111));
 		logger.info("Complete duplicateNumIncorrectBalance :: <---");
 	}
-	/**converting the list into JSON */
+
+	/** converting the list into JSON */
 	public static String asJsonString(final Object obj) {
 		try {
 			return new ObjectMapper().writeValueAsString(obj);

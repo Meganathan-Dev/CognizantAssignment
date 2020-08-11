@@ -1,15 +1,18 @@
 package com.rabo.api.common;
 
-public class StatementError {
+import java.io.Serializable;
 
-	public Integer reference;
-	public String accountNumber;
-	public StatementError(Integer reference, String accountNumber) {
-		super();
-		this.reference = reference;
-		this.accountNumber = accountNumber;
-	}
-	
-	
-	
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+@AllArgsConstructor
+public class StatementError implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+	private Integer reference;
+	private String accountNumber;
+
 }

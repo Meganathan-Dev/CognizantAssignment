@@ -55,6 +55,7 @@ public class RaboBankCustomerStatementIntegrationTest {
 	@Test
 	public void duplicateReferenceNumber() throws Exception {
 		logger.info("Start duplicateReferenceNumber ::--->");
+		
 		RequestBean reqbean1 = new RequestBean(1132111, "NQ980THGBPZPM8220H", "Testing1", 50.00, 20.00, 70.00);
 		RequestBean reqbean2 = new RequestBean(1132111, "NQ980THGBPZPM4330H", "Testing1", 50.00, 20.00, 70.00);
 

@@ -26,17 +26,7 @@ class RaboBankCustomerStatementApplicationTests {
 	private final Logger logger = Logger.getLogger(RaboBankCustomerStatementApplicationTests.class);
 	@Autowired
 	CustomerStatementService customerService;
-	/** Testing whether the given balance is meet the true condition <endbalance==(StartBalance +Mutation)>*/
-	@Test
-	public void checkCorrectBalance() {
-		assertTrue(customerService.checkBalance(10.10, 10.10, 20.20));
-
-	}
-	/** Testing whether the given balance is meet the false condition <endbalance!=(StartBalance +Mutation)>*/
-	@Test
-	public void checkIncorrectCorrectBalance() {
-		assertFalse(customerService.checkBalance(10.10, 10.50, 50.00));
-	}
+	
 	/** Testing whether the response bean  produce the result as Duplicate_reference*/
 	@Test
 	public void validateCustomerStatementDuplicateReference() {

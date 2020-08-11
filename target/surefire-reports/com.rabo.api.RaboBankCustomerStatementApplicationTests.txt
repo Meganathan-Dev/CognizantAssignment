@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.rabo.api.RaboBankCustomerStatementApplicationTests
 -------------------------------------------------------------------------------
-Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.017 s - in com.rabo.api.RaboBankCustomerStatementApplicationTests
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 6.71 s - in com.rabo.api.RaboBankCustomerStatementApplicationTests
