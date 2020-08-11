@@ -67,13 +67,47 @@ c.Integration testing.
 
 Note : Since testing is pretty straight forward ,I hope you could easily understand the coding logics.
  
- 
-Images for your reference:-
+Postman input file:-
+[
+  {
+    "Reference": 194261,
+    "AccountNumber": "NL91RABO0315273637",
+    "Description": "Clothes from Jan Bakker",
+    "Start Balance": 21.6,
+    "Mutation": -41.83,
+    "End Balance": -20.23
+  },
+  {
+    "Reference": 112806,
+    "AccountNumber": "NL27SNSB0917829871",
+    "Description": "Clothes for Willem Dekker",
+    "Start Balance": 91.23,
+    "Mutation": "+15.57",
+    "End Balance": 106.8
+  }]
+
+
+OUTPUT Images for your reference:-
+
+Successful:-
+
+![Successfull](https://user-images.githubusercontent.com/54101562/89869397-ec759c80-dbd1-11ea-9c89-23a9f24bd1eb.PNG)
 
 Duplciate Reference:-
 
 ![DuplicateReference](https://user-images.githubusercontent.com/54101562/89868974-46299700-dbd1-11ea-8373-e31f45671227.PNG)
 
+Incorrect Balance:-
+
+![IncorrectBalance](https://user-images.githubusercontent.com/54101562/89869240-b506f000-dbd1-11ea-8811-d162c6bbcdae.PNG)
+
+Duplicate Reference and Incorrect Balance:-
+
+![Duplicatereference_incorrectbalance](https://user-images.githubusercontent.com/54101562/89869253-b9cba400-dbd1-11ea-96d1-f6d772396883.PNG)
+
+Bad request:-
+
+![BadRequest](https://user-images.githubusercontent.com/54101562/89869217-ab7d8800-dbd1-11ea-8876-2738a9c53d72.PNG)
 
 
 THANKS FOR YOUR PATIENCE :-
